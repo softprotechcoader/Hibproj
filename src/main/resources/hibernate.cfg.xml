@@ -6,6 +6,12 @@
         <property name="hibernate.connection.username">postgres</property>
         <property name="hibernate.connection.password">123</property>
         <property name="hibernate.hbm2ddl.auto">update</property>
+        <property name="hibernate.show_sql">true</property>
+<!--        To Show SQL Queries -->
+        <property name="hibernate.format_sql">true</property>
+<!--        To visualize the query in formated way-->
+        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+<!--        to select Dialect its Optional as we have different query formate in different sql like somewhere text : varchar etc-->
 
     </session-factory>
 </hibernate-configuration>
