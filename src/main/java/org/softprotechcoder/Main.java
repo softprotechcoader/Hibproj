@@ -10,34 +10,28 @@ import org.hibernate.sql.ast.tree.expression.JsonObjectAggUniqueKeysBehavior;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-    Student s1 = new Student();
-     /*   s1.setName("Mira V.");
-        s1.setAge(29);
-        s1.setRollno(7);*/
+
+        Aliean a1 = new Aliean();
+                a1.setAid(700);
+                a1.setAname("Ayush");
+                a1.setAtech("Java");
 
 
         SessionFactory sf = new Configuration()
-                .addAnnotatedClass(org.softprotechcoder.Student.class)
+                .addAnnotatedClass(org.softprotechcoder.Aliean.class)
                 .configure()
                 .buildSessionFactory();
 
         Session session = sf.openSession();
-//        ****** Deleting data from Db ****
 
-        s1= session.find(Student.class,1);  // fetching data from db
         Transaction transaction = session.beginTransaction();
-        session.remove(s1); // passing it in remove or another option is to provide
-        // all details in student obj and pass it in remove.
+        session.persist(a1);
         transaction.commit();
-
 
 
 
         session.close(); // closing session
         sf.close(); // closing SessionFactory
-
-        System.out.println(s1);
-
 
 
 
