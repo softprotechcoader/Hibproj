@@ -12,17 +12,23 @@ public class Aliean {
     private int aid;
 
     /*
-    * In case we need to change column name we can use @Column(name = "alean_name")
-    * */
+     * In case we need to change column name we can use @Column(name = "alean_name")
+     * */
     @Column(name = "alean_name")
     private String aname;
     /*
-    * In case we want to skip any column name we can use @Transient annotation. sometime while building
-    * application, this type of thing might be needed for processing.
-    * */
+     * In case we want to skip any column name we can use @Transient annotation. sometime while building
+     * application, this type of thing might be needed for processing.
+     * */
     @Transient
     private String atech;
 
+    /*
+     * In case we don't want to create a separate table we can use this complex type defined in Laptop class.
+     * With annotation  @Embedded so column will extend the same Aliean Table.
+     *  */
+    @Embedded
+    private Laptop laptop;
 
     public int getAid() {
         return aid;
@@ -40,8 +46,6 @@ public class Aliean {
         this.aname = aname;
     }
 
-
-
     public String getAtech() {
         return atech;
     }
@@ -50,12 +54,21 @@ public class Aliean {
         this.atech = atech;
     }
 
+    public Laptop getLaptop() {
+        return laptop;
+    }
+
+    public void setLaptop(Laptop laptop) {
+        this.laptop = laptop;
+    }
+
     @Override
     public String toString() {
         return "Aliean{" +
                 "aid=" + aid +
                 ", aname='" + aname + '\'' +
                 ", atech='" + atech + '\'' +
+                ", laptop=" + laptop +
                 '}';
     }
 }
