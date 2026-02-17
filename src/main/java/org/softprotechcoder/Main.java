@@ -11,9 +11,9 @@ import org.hibernate.sql.ast.tree.expression.JsonObjectAggUniqueKeysBehavior;
 public class Main {
     public static void main(String[] args) {
     Student s1 = new Student();
-        s1.setName("Mira V.");
+     /*   s1.setName("Mira V.");
         s1.setAge(29);
-        s1.setRollno(7);
+        s1.setRollno(7);*/
 
 
         SessionFactory sf = new Configuration()
@@ -22,14 +22,16 @@ public class Main {
                 .buildSessionFactory();
 
         Session session = sf.openSession();
+//        ****** Deleting data from Db ****
 
-
-//        ***************************Update Statement***********
-//        session.merge(s1); // for any data change we need to use Transaction that's why it didn't worked.
+        s1= session.find(Student.class,1);  // fetching data from db
         Transaction transaction = session.beginTransaction();
-        session.merge(s1); // for merge even we provide new data which is not existing in case it will insert it.
+        session.remove(s1); // passing it in remove or another option is to provide
+        // all details in student obj and pass it in remove.
         transaction.commit();
-        // now it should work
+
+
+
 
         session.close(); // closing session
         sf.close(); // closing SessionFactory
