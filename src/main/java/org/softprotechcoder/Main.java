@@ -11,43 +11,32 @@ import org.hibernate.sql.ast.tree.expression.JsonObjectAggUniqueKeysBehavior;
 public class Main {
     public static void main(String[] args) {
     Student s1 = new Student();
-        s1.setName("Vishal");
+        s1.setName("Mira V.");
         s1.setAge(29);
-        s1.setRollno(30);
+        s1.setRollno(7);
 
-//        For Fetching Data of Student
-        Student s2 = null;   // s2 Object
 
-//        Configuration cfg = new Configuration();
-//        cfg.addAnnotatedClass(org.softprotechcoder.Student.class);
-//        cfg.configure();   // all above 3 line can we merged into one line
-//        SessionFactory sf = null;
         SessionFactory sf = new Configuration()
                 .addAnnotatedClass(org.softprotechcoder.Student.class)
                 .configure()
                 .buildSessionFactory();
-//        SessionFactory sf = cfg.buildSessionFactory(); // this will give object of SessionFactory.
-//        Session session = null ;      // Session is an interface. we can't create an object of it.
+
         Session session = sf.openSession();
-        /* here as we can't create direct obj of Session so SessionFactory is required  but SessionFactory is
-        * also an interface for this case we have to create and obj of Configuration from hibernate. */
-
-//        Transaction tx = session.beginTransaction();  // not required for fetching data from db
-//        session.persist(s1);
-//        tx.commit();                         // not require as performing get operation which do not have dependency on it .
 
 
-// Fetching Operation from DB
-
-           s2 = session.find(Student.class,25);
+//        ***************************Update Statement***********
+//        session.merge(s1); // for any data change we need to use Transaction that's why it didn't worked.
+        Transaction transaction = session.beginTransaction();
+        session.merge(s1); // for merge even we provide new data which is not existing in case it will insert it.
+        transaction.commit();
+        // now it should work
 
         session.close(); // closing session
         sf.close(); // closing SessionFactory
-//        System.out.println(s1);
-//        System.out.println("Data Updated in Sql.");
 
-        System.out.println("Fetching Date from SQL");
-        System.out.println(s2);
+        System.out.println(s1);
+
+
 
 
     }
