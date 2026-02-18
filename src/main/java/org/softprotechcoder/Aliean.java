@@ -27,7 +27,7 @@ public class Aliean {
      * In case we don't want to create a separate table we can use this complex type defined in Laptop class.
      * With annotation  @Embedded so column will extend the same Aliean Table.
      *  */
-    @Embedded
+    @OneToOne    // used to create one-to-one relationship in db
     private Laptop laptop;
 
     public int getAid() {

@@ -27,12 +27,14 @@ public class Main {
 
         SessionFactory sf = new Configuration()
                 .addAnnotatedClass(org.softprotechcoder.Aliean.class)
+                .addAnnotatedClass(org.softprotechcoder.Laptop.class) // need to add this class also.
                 .configure()
                 .buildSessionFactory();
 
         Session session = sf.openSession();
 
         Transaction transaction = session.beginTransaction();
+        session.persist(l1);
         session.persist(a1);
         transaction.commit();
 /*Fetching all details*/

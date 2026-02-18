@@ -1,7 +1,10 @@
 package org.softprotechcoder;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+@Entity
 public class Laptop {
-
+    @Id
     private int SrId;
     private String brand;
     private String ram;
