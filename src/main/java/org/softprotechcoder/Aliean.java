@@ -1,6 +1,8 @@
 package org.softprotechcoder;
 
 import jakarta.persistence.*;
+
+import java.util.List;
 // if its required to keep the class name as it is and change the Entity name as bydefault entity name = table name.
 //@Entity(name = "alean_table")
 
@@ -27,8 +29,9 @@ public class Aliean {
      * In case we don't want to create a separate table we can use this complex type defined in Laptop class.
      * With annotation  @Embedded so column will extend the same Aliean Table.
      *  */
-    @OneToOne    // used to create one-to-one relationship in db
-    private Laptop laptop;
+    @OneToMany    // used to create one-to-many relationship in db
+    // as one Alean can have many laptop so its one-to-many relationship so used list of laptops.
+    private List<Laptop> laptops;
 
     public int getAid() {
         return aid;
@@ -54,12 +57,12 @@ public class Aliean {
         this.atech = atech;
     }
 
-    public Laptop getLaptop() {
-        return laptop;
+    public List<Laptop> getLaptops() {
+        return laptops;
     }
 
-    public void setLaptop(Laptop laptop) {
-        this.laptop = laptop;
+    public void setLaptops(List<Laptop> laptops) {
+        this.laptops = laptops;
     }
 
     @Override
@@ -68,7 +71,7 @@ public class Aliean {
                 "aid=" + aid +
                 ", aname='" + aname + '\'' +
                 ", atech='" + atech + '\'' +
-                ", laptop=" + laptop +
+                ", laptops=" + laptops +
                 '}';
     }
 }

@@ -6,6 +6,8 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.sql.ast.tree.expression.JsonObjectAggUniqueKeysBehavior;
 
+import java.util.Arrays;
+
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
@@ -18,11 +20,17 @@ public class Main {
                l1.setRam("8GB");
                l1.setOs("Windows 10");
 
+        Laptop l2 = new Laptop();
+                l2.setSrId(1002);
+                l2.setBrand("Dell");
+                l2.setRam("6GB");
+                l2.setOs("Windows 8");
+
         Aliean a1 = new Aliean();
                 a1.setAid(700);
                 a1.setAname("Ayush");
                 a1.setAtech("Java");
-                a1.setLaptop(l1);
+                a1.setLaptops(Arrays.asList(l1,l2)); // as it is list type we have to use Arrays.asList.
 
 
         SessionFactory sf = new Configuration()
@@ -35,6 +43,7 @@ public class Main {
 
         Transaction transaction = session.beginTransaction();
         session.persist(l1);
+        session.persist(l2);
         session.persist(a1);
         transaction.commit();
 /*Fetching all details*/
