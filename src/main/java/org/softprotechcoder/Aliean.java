@@ -29,8 +29,9 @@ public class Aliean {
      * In case we don't want to create a separate table we can use this complex type defined in Laptop class.
      * With annotation  @Embedded so column will extend the same Aliean Table.
      *  */
-    @OneToMany    // used to create one-to-many relationship in db
+//    @OneToMany    // used to create one-to-many relationship in db
     // as one Alean can have many laptop so its one-to-many relationship so used list of laptops.
+    @ManyToMany // used to create many- to- many relationship in db.
     private List<Laptop> laptops;
 
     public int getAid() {
@@ -71,7 +72,7 @@ public class Aliean {
                 "aid=" + aid +
                 ", aname='" + aname + '\'' +
                 ", atech='" + atech + '\'' +
-                ", laptops=" + laptops +
+                /*", laptops=" + laptops +*/ // avoid relationship maping in toString
                 '}';
     }
 }

@@ -2,6 +2,11 @@ package org.softprotechcoder;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+
+import java.util.List;
+
 @Entity
 public class Laptop {
     @Id
@@ -9,6 +14,9 @@ public class Laptop {
     private String brand;
     private String ram;
     private String os;
+//    @ManyToOne // many laptops can be assigned to one alean.
+    @ManyToMany // many laptops can be assigned to many alean.
+    private List<Aliean> alieans;
 
     public int getSrId() {
         return SrId;
@@ -42,6 +50,14 @@ public class Laptop {
         this.os = os;
     }
 
+    public List<Aliean> getAlieans() {
+        return alieans;
+    }
+
+    public void setAlieans(List<Aliean> alieans) {
+        this.alieans = alieans;
+    }
+
     @Override
     public String toString() {
         return "Laptop{" +
@@ -50,5 +66,6 @@ public class Laptop {
                 ", ram='" + ram + '\'' +
                 ", os='" + os + '\'' +
                 '}';
+//        / its better to avoid relationship in toStrings
     }
 }
