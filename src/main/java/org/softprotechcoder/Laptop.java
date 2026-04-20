@@ -15,7 +15,8 @@ public class Laptop {
     private String ram;
     private String os;
 //    @ManyToOne // many laptops can be assigned to one alean.
-    @ManyToMany // many laptops can be assigned to many alean.
+    @ManyToMany(mappedBy = "laptops")//MappedBy -> on giving this reference laptops will be responsible for mapping.
+    // many laptops can be assigned to many alean.
     private List<Aliean> alieans;
 
     public int getSrId() {
